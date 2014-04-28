@@ -47,7 +47,7 @@ class Token:
         return "<" + ",".join(s_list) + ">"
 
 
-def lex_analyze(statement:str, table:SymbolTable) -> "list(Token)":
+def tokenize(statement:str, table:SymbolTable) -> "list(Token)":
     """Create a list of tokens from a statement
     
     Args
@@ -81,4 +81,4 @@ if __name__ == "__main__":
     table = SymbolTable()
 
     for arg in args:
-        print(str_list(lex_analyze(arg, table)))
+        print(str_list(tokenize(arg, table)))
