@@ -2,30 +2,44 @@
 
 _modulo_value = 2**8
 
+from math import log
+
+def _digits(n:int) -> int:
+    return int(log(n,2))
+    
+
 class Unit(int):
-    def __new__(cls,arg):
-        return super().__new__(cls,arg % (_modulo_value))
+    def __new__(cls,val,mod=_modulo_value):
+        ret = super().__new__(cls,val % (mod))
+        ret.mod = _modulo_value
+        ret.dig = _digits(ret.mod)
+        return ret
+
+    def int_str(self):
+        return super().__str__()
 
     def __str__(self):
-       return "{:#010x}".format(self)
+        form_str = "{{:#0{}x}}".format(self.dig+2)
+        return form_str.format(self)
+       #return "{:#010x}".format(self)
 
     def __add__(self,other):
-        return Unit(super().__add__(other) % _modulo_value)
+        return Unit(super().__add__(other) % self.mod,self.mod)
 
     def __mul__(self,other):
-        return Unit(super().__mul__(other) % _modulo_value)
+        return Unit(super().__mul__(other) % self.mod,self.mod)
 
     def __sub__(self,other):
-        return Unit(super().__sub__(other) % _modulo_value)
+        return Unit(super().__sub__(other) % self.mod,self.mod)
 
     def __div__(self,other):
-        return Unit(super().__div__(other) % _modulo_value)
+        return Unit(super().__div__(other) % self.mod,self.mod)
 
     def __floordiv__(self,other):
-        return Unit(super().__floordiv__(other) % _modulo_value)
+        return Unit(super().__floordiv__(other) % self.mod,self.mod)
 
 if __name__ == '__main__':
-    print("Modulo {}".format(2**8))
+    print("Modulo {}".format(_modulo_value))
     print(Unit(10))
     print(Unit(100))
     print(Unit(2**8))

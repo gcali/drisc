@@ -29,3 +29,7 @@ class Env():
 if __name__ == '__main__':
     e = Env(["R0", "R1", "R2"])
     print(e)
+    print(e.bind("R0"))
+    print(e.bind("R0"))
+    print(e.bind("Rvar"))
+    print(e)

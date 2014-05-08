@@ -13,4 +13,6 @@ def is_number(s:str) -> bool:
         return False
 
 if __name__ == '__main__':
-    print(str_list(["Prova","di","stampa"], lbracket="", rbracket="", separator=" "))
+    print(str_list(["Prova","di","stampa"], lbracket="",
+                                            rbracket="", 
+                                            separator=" "))
