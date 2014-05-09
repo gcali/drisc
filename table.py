@@ -4,7 +4,8 @@ class SymbolTable():
     def __init__(self, operators=["ADD", "MUL", "SUB", "DIV",
                                   "LOAD", "STORE",
                                   "IF<", "IF>", "IF<=", "IF>=",
-                                  "IF=", "IF!=", "GOTO"
+                                  "IF=", "IF!=", "GOTO",
+                                  "CALL", "EXIT"
                                   ],
                        keywords=[";",":"]):
         self.table = dict()
