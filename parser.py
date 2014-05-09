@@ -11,8 +11,11 @@ from misc import str_list
 class ParsingError(Exception):
     pass
 
-def _create_parse_error(line_number:int, message:str, token:str) -> ParsingError:
-    return ParsingError("(ParseError) l{}: {}\nToken: {}".format(line_number, message, token))
+def _create_parse_error(line_number:int, message:str, token:str)\
+                        -> ParsingError:
+    return ParsingError("(ParseError) l{}: {}\nToken: {}".format(
+        line_number, message, token
+    ))
 
 def _create_parse_warning(line_number:int, message:str) -> str:
     return "(ParseWarning) l{}: {}".format(line_number, message)
@@ -93,15 +96,17 @@ def parse_tokenlist(token_list:"list(token)")\
             curr_statement.line_number = t.line_number
             statement_list.append(curr_statement)
             if not curr_statement.op:
-                warnings_list.append(_create_parse_warning(t.line_number,
-                                                           "empty statement"))
+                warnings_list.append(_create_parse_warning(
+                    t.line_number, "empty statement"
+                ))
             curr_statement = Statement()
             next_is_semicolon = False
             is_in_args = False
 
     if not curr_statement.is_new():
-        warnings_list.append(_create_parse_warning(-1,
-                                                   "last statement not empty"))
+        warnings_list.append(_create_parse_warning(
+            -1, "last statement not empty"
+        ))
     return (statement_list,warnings_list)
 
 if __name__ == '__main__':
