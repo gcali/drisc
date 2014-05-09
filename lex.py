@@ -36,7 +36,7 @@ def tokenize(statement:str, table:SymbolTable,
     line_number = start_line_number
     #statement = statement.lower()
     for c in statement:
-        if c.isalnum():
+        if c.isalnum() or c in ["<",">","=","!"]:
             current_token.append(c)
         else:
             if c == "\n":
